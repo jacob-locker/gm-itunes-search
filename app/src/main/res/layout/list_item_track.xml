@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="track"
+            type="com.jlocker.itunesartists.data.ArtistProduct" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardPreventCornerOverlap="true"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvTrackNameValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:text="@{track.trackName}"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintEnd_toStartOf="@id/tvPriceLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvArtistNameValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{track.artistName}"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintEnd_toStartOf="@id/tvPriceLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTrackNameValue"/>
+
+            <TextView
+                android:id="@+id/tvReleaseDateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{track.releaseDateNoTime}"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvPriceLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvArtistNameValue" />
+
+            <TextView
+                android:id="@+id/tvGenreValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{track.primaryGenreName}"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvPriceLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvReleaseDateValue" />
+
+            <TextView
+                android:id="@+id/tvPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="$"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="@id/tvPriceValue"
+                app:layout_constraintEnd_toStartOf="@id/tvPriceValue"
+                app:layout_constraintTop_toTopOf="@id/tvPriceValue" />
+
+            <TextView
+                android:id="@+id/tvPriceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{String.valueOf(track.trackPrice)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

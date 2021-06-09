@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ItunesArtists</string>
+    <string name="artist">Artist:</string>
+    <string name="track">Track:</string>
+</resources>

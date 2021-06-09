@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.jlocker.itunesartists.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etSearchTracks"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <EditText
+            android:id="@+id/etSearchTracks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:autofillHints="name"
+            android:hint="Enter Artist"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:text="@={viewModel.searchString}"
+            android:importantForAutofill="yes"
+            app:layout_constraintEnd_toStartOf="@id/btnSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:text="Find Tracks"
+            android:onClick="@{() -> viewModel.searchTracks()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTracks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingEnd="@dimen/card_side_margin"
+            android:paddingStart="@dimen/card_side_margin"
+            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+            android:requiresFadingEdge="vertical"
+            app:layout_constraintTop_toBottomOf="@id/etSearchTracks"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="1"
+            tools:context=".MainActivity"
+            tools:listitem="@layout/list_item_track"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
